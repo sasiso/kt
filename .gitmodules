@@ -1,0 +1,3 @@
+[submodule "ext/kt_images"]
+	path = ext/kt_images
+	url = https://github.com/sasiso/kt_images.git
