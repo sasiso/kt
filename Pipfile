@@ -8,6 +8,11 @@ verify_ssl = true
 [packages]
 numpy = "*"
 tensorflow = "*"
+opencv-python = "*"
+pyplot = "*"
+matplotlib = "*"
+jupyter = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
