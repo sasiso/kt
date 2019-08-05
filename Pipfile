@@ -9,10 +9,9 @@ verify_ssl = true
 numpy = "*"
 tensorflow = "*"
 opencv-python = "*"
-pyplot = "*"
 matplotlib = "*"
 jupyter = "*"
 pillow = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "*"
