@@ -14,6 +14,8 @@ def imshow_components(labels, display):
 
     # set bg label to black
     labeled_img[label_hue == 0] = 0
+    display(labeled_img, "labeled_img")
+    cv2.imwrite("labeled_img.jpeg", labeled_img)
     return labeled_img
 
 
@@ -33,4 +35,24 @@ def find_masks(img, display=None):
 
     ret, labels = cv2.connectedComponents(img)
 
-    return imshow_components(labels, display)
+    for i in range(1, ret):
+        try:
+            sub = np.argwhere(labels == i)
+            x_min = np.argmin(sub, axis=0)
+            x_max = np.argmax(sub, axis=0)
+            y1 = sub[x_min[0], 0]
+            y2 = sub[x_max[0], 0]
+            x1 = sub[x_min[1], 1]
+            x2 = sub[x_max[1], 1]
+
+            area = (x2 - x1) * (y2 - y1)
+            if area > 14000 or area < 300:
+                print("Skipping object of size:", area)
+                continue
+
+            cv2.rectangle(labels, (x1, y1), (x2, y2), 100)
+        except Exception as ex:
+            print(ex)
+    imshow_components(labels, display)
+
+    return ret, labels
